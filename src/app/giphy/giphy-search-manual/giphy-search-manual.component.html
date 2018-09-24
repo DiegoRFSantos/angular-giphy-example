@@ -1,5 +1,19 @@
-Limit: <input type="number"/>
-Term: <input type="text"/>
-<button>Pesquisar</button>
+Limit: <input type="number" [(ngModel)]="limit"/>
+Term: <input type="text" (keyup.enter)="searchGiphy()" [(ngModel)]="term" tabindex="1"/>
+<button (click)="searchGiphy()" tabindex="2">Pesquisar</button>
 
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="container text-center">
+    
+    <!-- {{gifs | json}} -->
+
+    <a *ngFor="let gif of gifs" href="http://i.giphy.com/{{gif.id}}.gif" target="_blank">
+        <img src="http://i.giphy.com/{{gif.id}}.gif" title="Gif" class="img-fluid" />
+    </a>
+
+</div>

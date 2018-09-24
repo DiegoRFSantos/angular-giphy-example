@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GiphySearchService } from '../giphy-search.service';
 
 @Component({
   selector: 'giphy-giphy-search-manual',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GiphySearchManualComponent implements OnInit {
 
-  constructor() { }
+  gifs: any = [];
+  limit: string;
+  term: string;
+
+  constructor(private service: GiphySearchService) { }
 
   ngOnInit() {
+    this.limit = '10';
   }
 
+  searchGiphy(){
+    this.service.searchGiphy(this.limit,this.term).subscribe(response => {
+      if(!response.data) return;
+
+      this.gifs = response.data;
+    });
+  }
 }
